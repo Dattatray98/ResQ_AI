@@ -2,11 +2,11 @@ import axios from "axios";
 
 
 
-const getMap = async (lat: any, lng: any) => {
+export const getMap = async (lat: number, lng: number) => {
     const response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json",
         {
             params: {
-                latlag: `${lat}, ${lng}`,
+                 latlng: `${lat},${lng}`,
                 key: process.env.GOOGLE_MAP_API_KEY,
             },
         }
@@ -14,3 +14,4 @@ const getMap = async (lat: any, lng: any) => {
 
     return response.data;
 }
+

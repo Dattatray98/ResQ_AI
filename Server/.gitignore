@@ -44,7 +44,3 @@ Thumbs.db
 # Temporary files
 temp/
 tmp/
-
-# Package lock (optional but recommended if using only yarn/pnpm)
-package-lock.json
-yarn.lock
