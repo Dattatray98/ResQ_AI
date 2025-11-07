@@ -31,7 +31,6 @@ export const getWeatherData = async (req: Request, res: Response) => {
 
         if (index !== -1){
             const CurrentWeather = {
-                time : data.time[index],
                 temperature : data.temperature_2m[index],
                 precipitation : data.precipitation[index],
                 wind_speed : data.wind_speed_10m[index],
