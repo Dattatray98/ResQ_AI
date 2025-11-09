@@ -22,6 +22,10 @@ const Landing = () => {
                     </div>
 
                 </div>
+
+                <div className="h-screen p-20 flex gap-5">
+                   
+                </div>
             </main>
         </div>
     )

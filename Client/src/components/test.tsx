@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Map from "../map";
+import Map from "./map";
 import Navbar from "./Navbar";
 
 const App = () => {

@@ -8,14 +8,14 @@ const Navbar = () => {
     const dashnav = path.startsWith("/dashboard")
     
     return (
-        <div className={`w-full  flex justify-between items-center px-[10vh] ${dashnav ? "bg-black h-15": "absolute z-10 top-5 bg-transparent h-20"}`}>
+        <div className={`w-full h-18 flex justify-between items-center px-[10vh] ${dashnav ? "bg-transparent absolute z-10": "absolute z-10 top-5 bg-transparent "}`}>
             <div className="flex items-center justify-between w-[45%] ">
                 <div>
-                    <h1 className={`font-bold cursor-pointer ${dashnav ? "text-white text-2xl" : "text-black text-4xl"}`}>ResQ AI</h1>
+                    <h1 className={`font-bold cursor-pointer text-black ${dashnav ? "text-2xl" : "text-4xl"}`}>ResQ AI</h1>
                 </div>
                 <div className="flex gap-10">
                     {NavbarTypes.map((item) => (
-                        <Link to={`${item.path}`} key={item.id} className={`font-medium cursor-pointer ${dashnav ? "text-white text-lg" : "text-black text-xl"}`}>{item.label}</Link>
+                        <Link to={`${item.path}`} key={item.id} className={`font-medium cursor-pointer text-black ${dashnav ? "text-lg" : "text-black text-xl"}`}>{item.label}</Link>
                     ))}
                 </div>
             </div>

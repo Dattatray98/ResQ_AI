@@ -35,7 +35,7 @@ const Map = ({ lat, lng }: { lat: number; lng: number }) => {
     };
   }, [lat, lng]);
 
-  return <div id="map" style={{ width: "100%", height: "500px" }} />;
+  return <div id="map" className="rounded-2xl w-full h-[60vh] border-2 border-gray-300 shadow-md "/>;
 };
 
 export default Map;

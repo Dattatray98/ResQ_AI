@@ -1,17 +1,66 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar"
 import { getLocation } from "../hooks/useMap";
-import Map from "../map";
+import Map from "../components/map";
 import { getWeatherData } from "../hooks/useWeather";
-import { IoPartlySunnyOutline } from "react-icons/io5";
+import WeatherForcast from "../components/Dashboard/WeatherForcast";
+import WeatherGrahp from "../components/WeatherGrahp";
 
 const Dashboard = () => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [data, setData] = useState<any>("");
+    const [dailyWeather, setDailyWeather] = useState<any>("")
     const [time, setTime] = useState(new Date() || "");
     const handleGetLocation = () => {
         getLocation(setCoords);
     }
+
+
+    const tempData = {
+        labels: dailyWeather.time, // X-axis: time (dates)
+        datasets: [
+            {
+                label: "Max Temperature (°C)",
+                data: dailyWeather.temperature_2m_max,
+                borderColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                tension: 0.3,
+                innerHeight: "100%",
+                innerWidth: "100%"
+            },
+        ],
+    };
+
+    const preciptationData = {
+        labels: dailyWeather.time, // X-axis: time (dates)
+        datasets: [
+            {
+                label: "precipitation",
+                data: dailyWeather.precipitation_sum,
+                borderColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                tension: 0.3,
+                innerHeight: "100%",
+                innerWidth: "100%"
+            },
+        ],
+    };
+
+    const WindData = {
+        labels: dailyWeather.time,
+        datasets: [
+            {
+                label: "Wind Speed",
+                data: dailyWeather.wind_speed_10m_max,
+                borderColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                tension: 0.3,
+                innerHeight: "100%",
+                innerWidth: "100%"
+            },
+        ],
+    };
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -23,7 +72,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (coords) {
-            getWeatherData(coords, setData)
+            getWeatherData(coords, setData, setDailyWeather)
         }
     }, [coords]);
 
@@ -34,40 +83,36 @@ const Dashboard = () => {
                 <Navbar />
             </header>
             <main>
-                <div className="h-[50vh] p-10 border flex items-center bg-linear-to-br from-white via-[#fbd9b9] to-[#ffffff]">
-                    <div className="h-[32vh] w-[56vh] border border-gray-300 rounded-[7vh] shadow-sm p-10 bg-[#fcf1e8]">
-                        <div className="flex items-center justify-between gap-2 backdrop:backdrop-blur-2xl">
-                            <span className="flex items-center gap-2">
-                                <IoPartlySunnyOutline className="text-yellow-600 h-8 w-8" />
-                                <h1 className="text-4xl font-medium">Weather</h1>
-                            </span>
-                            <p className="text-5xl font-medium text-gray-400 w-47 px-2">{time.toLocaleTimeString('en-US', {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                second : "2-digit",
-                                hour12: false
-                            })}</p>
+                <div className="h-[80vh] p-10 flex items-center bg-linear-to-br from-white via-[#fbd9b9] to-[#ffffff] relative">
+                    <div className="pt-10 px-8">
+                        <h1 className=" flex text-7xl font-medium text-black mb-2 ">Res<p className="text-red-700">Q</p>-AI Dashboard</h1>
+                        <p className="text-gray-600 text-lg font-medium mt-2 ml-1">
+                            Monitor real-time weather and disaster insights powered by ResQ AI ⚡
+                        </p>
+
+                        <div>
+                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-10 ml-3">Get location</button>
                         </div>
-                        <div className="p-5">
-                            {Array.isArray(data) ? (
-                                data.slice(1).map((item: any) => (
-                                    <div key={item[0]} className="flex items-center ">
-                                        {/* <p className="font-medium text-xl">{key} : &#160;</p> */}
-                                        <p className="font-bold text-2xl">{item[1]}</p>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>loading...</p>
-                            )}
-                        </div>
+
                     </div>
+                    <WeatherForcast data={data} time={time} dailyWeather={dailyWeather} />
+
+                </div>
+
+
+                <div className="flex p-10 gap-6 bg-linear-to-tr from-[#fbd9b9] via-[#fbd9b9] to-[#ffffff]">
+                    <WeatherGrahp Data={tempData} />
+                    <WeatherGrahp Data={preciptationData} />
+                    <WeatherGrahp Data={WindData} />
                 </div>
                 <div>
-                    <button onClick={handleGetLocation}>Getlocation</button>
-                </div>
-                <div>
-                    <div>
-                        {coords ? <Map lat={coords.lat} lng={coords.lng} /> : "Loading..."}
+                    <div className="p-5 bg-blue-50">
+                        <div className="p-3">
+                            <h1 className="font-medium text-2xl text-black">Map</h1>
+                        </div>
+                        <div>
+                            {coords ? <Map lat={coords.lat} lng={coords.lng} /> : "Loading..."}
+                        </div>
                     </div>
                 </div>
 
