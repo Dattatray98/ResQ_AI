@@ -5,7 +5,7 @@ import { CiTempHigh } from "react-icons/ci";
 
 const WeatherForcast: React.FC<any> = ({ data, time, dailyWeather }) => {
 
-    const unit = ["%", "km/h"]
+    const unit = ["%", "mph"]
 
     return (
         <div className="h-[50vh] w-[80vh] border border-gray-200 rounded-[7vh] shadow-md p-10 bg-[#fcf1e8] absolute right-20">

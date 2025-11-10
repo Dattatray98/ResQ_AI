@@ -3,7 +3,7 @@ import { MongoDatabase } from "./Config/MongoDB.config";
 import cors from 'cors';
 import User from "./Routes/User.route"
 import Weather from "./Routes/Weather.route";
-import { fetchMapData } from "./Controllers/GoogleMaps.controller";
+import Resq from "./Routes/ResQ_model.route";
 const app = express();
 
 app.use(cors({
@@ -26,7 +26,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use("/api/user", User);
 app.use("/api", Weather);
-app.use("/api", fetchMapData);
+app.use("/api", Resq);
 
 
 app.listen(PORT, () => {
