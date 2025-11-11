@@ -6,7 +6,8 @@ const Navbar = () => {
     const location = useLocation();
     const path = location.pathname;
     const dashnav = path.startsWith("/dashboard")
-    
+
+
     return (
         <div className={`w-full h-18 flex justify-between items-center px-[10vh] ${dashnav ? "bg-transparent absolute z-10": "absolute z-10 top-5 bg-transparent "}`}>
             <div className="flex items-center justify-between w-[45%] ">

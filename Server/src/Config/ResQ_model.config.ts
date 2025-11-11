@@ -28,9 +28,7 @@ export const ResQ_Model = async (req: Request, res: Response) => {
         const data: data = req.body;
         const respones = await axios.post("http://127.0.0.1:8000/predict", data);
 
-        res.status(200).json({
-            predictioni: respones.data,
-        })
+        res.status(200).json(respones.data)
 
     } catch (err) {
         res.status(500).json({ message: "server error ", err })

@@ -32,10 +32,28 @@ const Map = ({ lat, lng }: { lat: number; lng: number }) => {
         position: { lat, lng },
         map: map,
       });
+
+      const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({ location: { lat, lng } }, (result: any, status: string) => {
+        if (status == "OK") {
+          if (result[0]) {
+            const address = result[0].formatted_address;
+            console.log("Location : ", address);
+            alert("Address : " + address);
+          } else {
+            console.log("no result found")
+          }
+        } else {
+          console.log("Geocoder failed due to : ", status);
+        }
+      })
+
     };
   }, [lat, lng]);
 
-  return <div id="map" className="rounded-2xl w-full h-[60vh] border-2 border-gray-300 shadow-md "/>;
+  return <div id="map" className="rounded-2xl w-full h-[60vh] border-2 border-gray-300 shadow-md " />;
 };
+
 
 export default Map;

@@ -27,7 +27,7 @@ const WeatherGraph: React.FC<any> = ({ Data  }) => {
     };
 
     return (
-        <div className="h-[30vh] w-[60vh] p-5 rounded-4xl border border-gray-200 shadow-md bg-white">
+        <div className="h-50 md:h-[30vh] md:w-[60vh] p-5 rounded-4xl border border-gray-200 shadow-md bg-white">
             <Line data={Data} options={options} />
         </div>
     );

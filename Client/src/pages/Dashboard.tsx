@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import { getLocation } from "../hooks/useMap";
 import Map from "../components/map";
 import { getWeatherData } from "../hooks/useWeather";
 import WeatherForcast from "../components/Dashboard/WeatherForcast";
 import WeatherGrahp from "../components/WeatherGrahp";
+import Risk_comp from "../components/Dashboard/Risk_comp";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
@@ -14,7 +16,6 @@ const Dashboard = () => {
     const handleGetLocation = () => {
         getLocation(setCoords);
     }
-
 
     const tempData = {
         labels: dailyWeather.time, // X-axis: time (dates)
@@ -76,27 +77,28 @@ const Dashboard = () => {
         }
     }, [coords]);
 
-
     return (
         <div>
             <header>
                 <Navbar />
             </header>
             <main>
-                <div className="h-[80vh] p-10 flex items-center bg-linear-to-br from-white via-[#fbd9b9] to-[#ffffff] relative">
-                    <div className="pt-10 px-8">
-                        <h1 className=" flex text-7xl font-medium text-black mb-2 ">Res<p className="text-red-700">Q</p>-AI Dashboard</h1>
-                        <p className="text-gray-600 text-lg font-medium mt-2 ml-1">
+                <div className="h-[80vh] w-full p-3 md:p-10 flex items-center bg-linear-to-br from-white via-[#fbd9b9] to-[#ffffff]">
+                    <div className="pt-10 md:px-8 mt-10 h-[90%] w-[50%] flex flex-col justify-center">
+                        <h1 className=" flex text-4xl md:text-7xl font-medium text-black mb-2 ">Res<p className="text-red-700">Q</p>-AI Dashboard</h1>
+                        <p className="text-gray-600 text-sm md:text-lg font-medium mt-2 ml-1">
                             Monitor real-time weather and disaster insights powered by ResQ AI ⚡
                         </p>
 
                         <div>
-                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-10 ml-3">Get location</button>
+                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Get location</button>
                         </div>
-
                     </div>
-                    <WeatherForcast data={data} time={time} dailyWeather={dailyWeather} />
 
+                    <div className="h-[90%] w-[50%] flex flex-col items-center gap-5 mt-10 ">
+                        <WeatherForcast data={data} time={time} dailyWeather={dailyWeather} />
+                        <Risk_comp />
+                    </div>
                 </div>
 
 
