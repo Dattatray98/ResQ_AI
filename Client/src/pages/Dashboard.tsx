@@ -7,6 +7,7 @@ import WeatherForcast from "../components/Dashboard/WeatherForcast";
 import WeatherGrahp from "../components/WeatherGrahp";
 import Risk_comp from "../components/Dashboard/Risk_comp";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Dashboard = () => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
@@ -119,6 +120,9 @@ const Dashboard = () => {
                 </div>
 
             </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 }
