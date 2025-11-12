@@ -73,23 +73,36 @@ const Landing = () => {
                     </div>
                     <div className="w-[50%] p-10">
                         <div className="h-full flex flex-wrap rounded-xl border-2 border-[#027fa5] ]">
-                            <img src="/about.png" alt="ResQ-AI" className="h-full w-full rounded-xl " />
+                            <img src="../public/about.png" alt="ResQ-AI" className="h-full w-full rounded-xl " />
                         </div>
                     </div>
                 </div>
 
-                <div className="h-auto p-10 flex flex-col items-center gap-5 bg-gray-900">
+                <div className="h-[50vh] p-10 flex flex-col justify-center items-center gap-5 bg-gray-900">
                     <div>
                         <h1 className="text-white text-center text-4xl font-medium">ResQ-AI Workflow : From Data to Action</h1>
                         <p className="text-gray-400 text-lg">Our AI-powered platform tranforms complex data into life-saving insights through a streamlined, four-step process.</p>
                     </div>
                     <div className="flex gap-5 p-10">
-                            {data.map((item:any)=>(
-                                <div className="text-white border border-gray-700 bg-gray-800 p-5 rounded-xl shadow-sm shadow-gray-700">
-                                    <h1 className="text-white text-xl font-medium">{item.heading}</h1>
-                                    <p className="text-gray-400">{item.description}</p>
-                                </div>
-                            ))}
+                        {data.map((item: any) => (
+                            <div className="text-white border border-gray-700 bg-gray-800 p-5 rounded-xl shadow-sm shadow-gray-700">
+                                <h1 className="text-white text-xl font-medium">{item.heading}</h1>
+                                <p className="text-gray-400">{item.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
+                <div className="h-[50vh] p-10 flex flex-col justify-center items-center gap-5 bg-gray-900">
+                    <div className="flex flex-col gap-3">
+                        <h1 className="text-5xl text-center text-white font-medium">Stay Ahead of the Flood.</h1>
+                        <h1 className="text-5xl text-center text-white font-medium">Protect Your Community with AI</h1>
+                        <p className="text-xl text-gray-400 mt-5 text-center">Get a personalized walk through of the ResQ-AI platform and see how our predictive analytics can safeguard region.</p>
+                    </div>
+                    <div className="flex gap-5 mt-10">
+                        <button className="px-5 py-2 w-50 rounded-xl bg-gray-300 font-bold text-lg cursor-pointer hover:bg-white hover:text-gray-800 text-black transition-all duration-300 hover:shadow-sm shadow-gray-400">Request a Demo</button>
+                        <button className="border border-gray-400 text-white px-5 py-2 w-50 rounded-xl bg-transparent font-bold text-lg cursor-pointer hover:shadow-sm shadow-gray-400 transition-all duration-300">Learn More</button>
                     </div>
                 </div>
             </main>
