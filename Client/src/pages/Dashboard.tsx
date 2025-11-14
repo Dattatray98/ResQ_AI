@@ -8,12 +8,20 @@ import WeatherGrahp from "../components/WeatherGrahp";
 import Risk_comp from "../components/Dashboard/Risk_comp";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import useAlret from "../hooks/useAlert";
+import Alert_message from "../components/Dashboard/Alert_message";
+import Safety_Instructions from "../components/Dashboard/Safety_Instructions";
+import useSafetyPopup from "../hooks/useSafetyPopup";
 
 const Dashboard = () => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [data, setData] = useState<any>("");
     const [dailyWeather, setDailyWeather] = useState<any>("")
     const [time, setTime] = useState(new Date() || "");
+    const pred = useAlret();
+    const { OpenSafety, handleSafety, closeSafety } = useSafetyPopup();
+
+
     const handleGetLocation = () => {
         getLocation(setCoords);
     }
@@ -63,6 +71,10 @@ const Dashboard = () => {
         ],
     };
 
+    const handleTesting = () => {
+        pred.fetchpred();
+
+    }
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -78,12 +90,14 @@ const Dashboard = () => {
         }
     }, [coords]);
 
+
+
     return (
         <div>
             <header>
                 <Navbar />
             </header>
-            <main>
+            <main className="relative">
                 <div className="h-[80vh] w-full p-3 md:p-10 flex items-center bg-linear-to-br from-white via-[#fbd9b9] to-[#ffffff]">
                     <div className="pt-10 md:px-8 mt-10 h-[90%] w-[50%] flex flex-col justify-center">
                         <h1 className=" flex text-4xl md:text-7xl font-medium text-black mb-2 ">Res<p className="text-red-700">Q</p>-AI Dashboard</h1>
@@ -91,14 +105,16 @@ const Dashboard = () => {
                             Monitor real-time weather and disaster insights powered by ResQ AI ⚡
                         </p>
 
-                        <div>
-                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Get location</button>
+                        <div className="flex gap-5">
+                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Refresh location</button>
+                            <button onClick={handleTesting} className="px-5 py-2 bg-white shadow-sm rounded-xl text-black font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Test With mock Data</button>
                         </div>
+
                     </div>
 
                     <div className="h-[90%] w-[50%] flex flex-col items-center gap-5 mt-10 ">
                         <WeatherForcast data={data} time={time} dailyWeather={dailyWeather} />
-                        <Risk_comp />
+                        <Risk_comp prediction={pred.prediction} onOpenSafety={handleSafety} />
                     </div>
                 </div>
 
@@ -119,6 +135,8 @@ const Dashboard = () => {
                     </div>
                 </div>
 
+                <Alert_message prediction={pred.prediction} />
+                {OpenSafety && <Safety_Instructions onClose={closeSafety} />}
             </main>
             <footer>
                 <Footer />

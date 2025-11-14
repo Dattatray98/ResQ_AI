@@ -26,7 +26,7 @@ interface data {
 export const ResQ_Model = async (req: Request, res: Response) => {
     try {
         const data: data = req.body;
-        const respones = await axios.post("http://127.0.0.1:8000/predict", data);
+        const respones = await axios.post("https://resq-ai-disaster-predictor.onrender.com/predict", data);
 
         res.status(200).json(respones.data)
 

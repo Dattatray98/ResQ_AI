@@ -1,5 +1,8 @@
+import { SignInButton, useUser } from "@clerk/clerk-react";
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface datatype {
     id: number;
@@ -34,10 +37,24 @@ const data: datatype[] = [
 
 
 const Landing = () => {
+
+    const {isSignedIn} = useUser();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(isSignedIn){
+            navigate("/dashboard")
+        }
+    },[isSignedIn, navigate])
+    const scrollToSection = (id:any) => {
+        const section = document.getElementById(id);
+        section?.scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
         <div className=" relative">
             <header>
-                <Navbar />
+                <Navbar/>
             </header>
             <main>
                 <div className="border md:h-screen relative bg-cover "
@@ -49,14 +66,17 @@ const Landing = () => {
                             <p className="text-gray-700 text-xl mb-5">AI-powered flood prediction & disaster response system.</p>
                         </div>
                         <div className="flex gap-5 ml-10">
-                            <button className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold bg-red-700 text-white hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer">Get Started</button>
-                            <button className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold text-white bg-black hover:bg-white hover:shadow-md hover:text-black transition-all duration-300 cursor-pointer ">Learn More</button>
+                            <SignInButton>
+                                <button className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold bg-red-700 text-white hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer">Get Started</button>
+                            </SignInButton>
+
+                            <button className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold text-white bg-black hover:bg-white hover:shadow-md hover:text-black transition-all duration-300 cursor-pointer " onClick={()=>scrollToSection("about")}>Learn More</button>
                         </div>
                     </div>
 
                 </div>
 
-                <div className="h-auto p-10 flex items-center gap-5 bg-gray-900">
+                <div id="about" className="h-auto p-10 flex items-center gap-5 bg-gray-900">
                     <div className="w-[50%] p-10">
                         <h1 className="text-white text-4xl font-medium">About ResQ-AI</h1>
                         <p className="text-gray-400">ResQ-AI is an AI-powered platform that predicts and prevents flood risks using real-time weather, satellite, and topography data.</p>
