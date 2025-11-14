@@ -4,6 +4,7 @@ import cors from 'cors';
 import User from "./Routes/User.route"
 import Weather from "./Routes/Weather.route";
 import Resq from "./Routes/ResQ_model.route";
+import Location from "./Routes/location.route";
 const app = express();
 
 app.use(cors({
@@ -27,6 +28,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use("/api/user", User);
 app.use("/api", Weather);
 app.use("/api", Resq);
+app.use("/api", Location);
 
 
 app.listen(PORT, () => {

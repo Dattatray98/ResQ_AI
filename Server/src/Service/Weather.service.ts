@@ -33,8 +33,6 @@ export const getWeatherData = async (req: Request, res: Response) => {
         const offset = 5.5 * 60 * 60 * 1000;
         const istTime = new Date(now.getTime() + offset);
         const currenthour = istTime.toISOString().slice(0, 13) + ":00";
-        console.log(currenthour);
-
         const index = data.time.findIndex((t: string) => t.startsWith(currenthour));
 
         if (index !== -1) {

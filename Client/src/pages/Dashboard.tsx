@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 // import Navbar from "../components/Navbar"
 import { getLocation } from "../hooks/useMap";
-import Map from "../components/map";
 import { getWeatherData } from "../hooks/useWeather";
 import WeatherForcast from "../components/Dashboard/WeatherForcast";
 import WeatherGrahp from "../components/WeatherGrahp";
@@ -12,9 +11,11 @@ import useAlret from "../hooks/useAlert";
 import Alert_message from "../components/Dashboard/Alert_message";
 import Safety_Instructions from "../components/Dashboard/Safety_Instructions";
 import useSafetyPopup from "../hooks/useSafetyPopup";
+import MapComponent from "../components/MapComponent";
 
 const Dashboard = () => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+    const [direct, setDirect] = useState<{ lat: number; lng: number } | null>(null);
     const [data, setData] = useState<any>("");
     const [dailyWeather, setDailyWeather] = useState<any>("")
     const [time, setTime] = useState(new Date() || "");
@@ -22,9 +23,12 @@ const Dashboard = () => {
     const { OpenSafety, handleSafety, closeSafety } = useSafetyPopup();
 
 
-    const handleGetLocation = () => {
-        getLocation(setCoords);
-    }
+    useEffect(() => {
+        const handleGetLocation = () => {
+            getLocation(setCoords);
+        }
+        handleGetLocation();
+    },[])
 
     const tempData = {
         labels: dailyWeather.time, // X-axis: time (dates)
@@ -76,6 +80,11 @@ const Dashboard = () => {
 
     }
 
+
+    const handleDirections = ({ lat2, lng2 }: { lat2: number, lng2: number }) => {
+        setDirect({ lat: lat2, lng: lng2 })
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
             setTime(new Date());
@@ -106,7 +115,7 @@ const Dashboard = () => {
                         </p>
 
                         <div className="flex gap-5">
-                            <button onClick={handleGetLocation} className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Refresh location</button>
+                            <button  className="px-5 py-2 bg-red-700 shadow-sm rounded-xl text-white font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Refresh location</button>
                             <button onClick={handleTesting} className="px-5 py-2 bg-white shadow-sm rounded-xl text-black font-medium mt-5 md:mt-10 md:ml-3 cursor-pointer">Test With mock Data</button>
                         </div>
 
@@ -130,13 +139,14 @@ const Dashboard = () => {
                             <h1 className="font-medium text-2xl text-black">Map</h1>
                         </div>
                         <div>
-                            {coords ? <Map lat={coords.lat} lng={coords.lng} /> : "Loading..."}
+                            {/* {coords ? <Map lat={coords.lat} lng={coords.lng} /> : "Loading..."} */}
+                            {coords ? <MapComponent lat={coords.lat} lng={coords.lng} lat2={direct?.lat} lng2={direct?.lng} /> : "loading..."}
                         </div>
                     </div>
                 </div>
 
-                <Alert_message prediction={pred.prediction} />
-                {OpenSafety && <Safety_Instructions onClose={closeSafety} />}
+                <Alert_message prediction={pred.prediction} onOpenSafety={handleSafety} />
+                {OpenSafety && <Safety_Instructions lat={coords?.lat} lng={coords?.lng} onClose={closeSafety} directions={handleDirections} />}
             </main>
             <footer>
                 <Footer />
@@ -145,4 +155,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Dashboard;

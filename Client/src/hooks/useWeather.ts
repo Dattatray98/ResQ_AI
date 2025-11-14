@@ -14,9 +14,7 @@ export async function getWeatherData(coords: any, setData: any, setDailyWeather:
 
             const todayData = Object.entries(res.data.CurrentWeather);
 
-            console.log(todayData)
             const dailyData = res.data.dailyData;
-            console.log(dailyData)
 
         setData(todayData);
         setDailyWeather(dailyData)

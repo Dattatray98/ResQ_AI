@@ -33,10 +33,8 @@ const useAlret = () => {
             const value = res.data?.prediction?.[0]?.[0]
             const percent = value * 100;
             setPrediction(percent)
-            console.log(percent);
         } catch (err: any) {
             setError(err.message)
-            console.log(err)
         } finally {
             setLoading(false)
         }

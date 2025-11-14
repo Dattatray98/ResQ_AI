@@ -32,6 +32,5 @@ export const ResQ_Model = async (req: Request, res: Response) => {
 
     } catch (err) {
         res.status(500).json({ message: "server error ", err })
-        console.log(err)
     }
 }

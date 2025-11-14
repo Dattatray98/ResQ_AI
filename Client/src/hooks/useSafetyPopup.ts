@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const useSafetyPopup = () => {
     const [OpenSafety, setOpenSafety] = useState<boolean>(false);
-    
+
     const handleSafety = () => {
         setOpenSafety(true); // open popup
     };
