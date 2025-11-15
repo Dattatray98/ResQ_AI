@@ -14,23 +14,24 @@
 1. Clone the repository:
    ```bash
    git clone https://github.com/Dattatray98/ResQ_AI.git
-
+   ```
 2. Installation and Setup
 ### FrontEnd Setup
 #### Go to client folder
 ```bash
 cd Client
+```
 
-2. Install dependencies:
-#### 
+#### Install dependencies: 
 ```bash
 npm install
-
-- Start Frontend:
-```bash
+```
+#### Start Frontend:
+```
 npm run dev
+```
 
-b) BackEnd Setup:
+### BackEnd Setup:
  1. Go to the backend folder:
 ```bash
 cd Server
