@@ -12,6 +12,4 @@
 
 ## Installation :
  1. Clone the repository:
-   ```bash 
-   git clone [text](https://github.com/Dattatray98/ResQ_AI.git)
-   
+   git clone https://github.com/Dattatray98/ResQ_AI.git
