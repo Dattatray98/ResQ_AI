@@ -39,7 +39,7 @@ export const useHigherGround = () => {
             if (pred.prediction > 60) {
                 try {
                     const response = await axios.get(
-                        "http://localhost:8000/api/location/higher-ground",
+                        `${import.meta.env.VITE_BACKEND_API}/api/location/higher-ground`,
                         {
                             params: {
                                 lat: coords.lat,

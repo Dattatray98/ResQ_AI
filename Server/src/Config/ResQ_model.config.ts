@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-interface data {
+interface model_data {
     MonsoonIntensity: number
     RiverManagement: number
     Deforestation: number
@@ -23,14 +23,7 @@ interface data {
 
 }
 
-export const ResQ_Model = async (req: Request, res: Response) => {
-    try {
-        const data: data = req.body;
-        const respones = await axios.post("https://resq-ai-disaster-predictor.onrender.com/predict", data);
-
-        res.status(200).json(respones.data)
-
-    } catch (err) {
-        res.status(500).json({ message: "server error ", err })
-    }
+export const ResQ_Model = async (data: model_data) => {
+    const respones = await axios.post("https://resq-ai-disaster-predictor.onrender.com/predict", data);
+    return respones.data
 }

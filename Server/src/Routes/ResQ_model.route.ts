@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { ResQ_Model } from "../Config/ResQ_model.config";
+import { ModelPred } from "../Controllers/ModelPred.controller";
 
 const router = Router();
 
-router.post("/resq", ResQ_Model);
+router.post("/resq", ModelPred);
 
 export default router;

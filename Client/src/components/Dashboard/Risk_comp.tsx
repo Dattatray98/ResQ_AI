@@ -34,7 +34,7 @@ const Risk_comp: React.FC<any> = ({ prediction }) => {
 
     const fetchUserLocation = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/user-address`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/user-address`, {
           params: {
             lat: coords.lat,
             lng: coords.lng,

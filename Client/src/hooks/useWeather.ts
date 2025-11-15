@@ -4,7 +4,7 @@ export async function getWeatherData(coords: any, setData: any, setDailyWeather:
     if (!coords) return;
 
     try {
-        const res = await axios.get("http://localhost:8000/api/weatherdata",
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/weatherdata`,
             {
                 params: {
                     latitude: coords.lat,

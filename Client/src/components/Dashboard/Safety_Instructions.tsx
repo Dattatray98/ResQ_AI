@@ -37,7 +37,6 @@ const data: datatype[] = [
 ]
 
 
-
 const Safety_Instructions: React.FC<any> = ({ onClose, directions, scrollToMap }) => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [higherGround, setHigherGround] = useState<any | null>(null);
@@ -52,7 +51,7 @@ const Safety_Instructions: React.FC<any> = ({ onClose, directions, scrollToMap }
 
     useEffect(() => {
         const fetchLocation = async () => {
-            const response = await axios.get("http://localhost:8000/api/location/higher-ground",
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}/api/location/higher-ground`,
                 {
                     params: {
                         lat: coords?.lat,
@@ -60,6 +59,7 @@ const Safety_Instructions: React.FC<any> = ({ onClose, directions, scrollToMap }
                     }
                 },
             );
+            console.log(response.data)
             setHigherGround(response.data)
         };
 

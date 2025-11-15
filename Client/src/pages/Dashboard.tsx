@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import Navbar from "../components/Navbar"
 import { getLocation } from "../hooks/useLocation";
 import { getWeatherData } from "../hooks/useWeather";
 import WeatherForcast from "../components/Dashboard/WeatherForcast";

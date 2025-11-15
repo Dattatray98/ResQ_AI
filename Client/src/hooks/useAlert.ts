@@ -8,7 +8,7 @@ const useAlret = () => {
 
     async function fetchpred() {
         try {
-            const res = await axios.post("http://localhost:8000/api/resq", {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_API}/api/resq`, {
                 "MonsoonIntensity": 75,
                 "RiverManagement": 80,
                 "Deforestation": 40,

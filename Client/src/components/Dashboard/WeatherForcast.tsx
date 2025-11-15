@@ -1,4 +1,3 @@
-
 import type React from "react"
 import { IoPartlySunnyOutline } from "react-icons/io5"
 import { CiTempHigh } from "react-icons/ci";
@@ -49,9 +48,6 @@ const WeatherForcast: React.FC<any> = ({ data, time }) => {
                     })}</p>
                 </div>
             </div>
-            {/* <div className="py-5 md:px-4 hidden md:block">
-               <Risk_comp />
-            </div> */}
         </div>
     )
 }
