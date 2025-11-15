@@ -17,11 +17,11 @@
 
 2. Installation and Setup
 ### FrontEnd Setup
- 1. Go to client folder
+1. Go to client folder
 ```bash
 cd Client
 
- 2. 1. Install dependencies:
+2. 1. Install dependencies:
 ```bash
 npm install
 
