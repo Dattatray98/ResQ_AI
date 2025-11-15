@@ -39,14 +39,13 @@ const Landing: React.FC = () => {
                 <Navbar />
             </header>
 
-            <main>
+            <main className="flex flex-col">
                 {/* Hero Section */}
                 <div
-                    className="border md:h-screen relative bg-cover"
-                    style={{ backgroundImage: "url('../../Public/herosection7.jpg')" }}
+                    className="h-[50vh] w-full md:h-screen relative bg-cover bg-[url('/herosection7.jpg')]"
                 >
-                    <div className="absolute z-10 left-[15vh] top-[30vh]">
-                        <h1 className="text-9xl font-bold text-black mb-2">
+                    <div className="absolute z-10 top-[10vh] md:left-[15vh] left-10 md:top-[30vh] h-full">
+                        <h1 className="text-5xl md:text-9xl font-bold text-black mb-2">
                             Res<p className="text-red-700 inline">Q</p>-AI
                         </h1>
                         <p className="text-gray-700 text-xl mb-5">
@@ -54,13 +53,13 @@ const Landing: React.FC = () => {
                         </p>
                         <div className="flex gap-5">
                             <SignInButton>
-                                <button className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold bg-red-700 text-white hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer">
+                                <button className="border border-gray-300 px-6 md:px-9 py-2 md:py-3 text-lg rounded-xl font-bold bg-red-700 text-white hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer">
                                     Get Started
                                 </button>
                             </SignInButton>
                             <button
                                 onClick={() => scrollToSection("about")}
-                                className="border border-gray-300 px-9 py-3 text-lg rounded-xl font-bold text-white bg-black hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer"
+                                className="border border-gray-300 px-6 md:px-9 py-2 md:py-3 text-lg rounded-xl font-bold text-white bg-black hover:bg-white hover:text-black hover:shadow-md transition-all duration-300 cursor-pointer"
                             >
                                 Learn More
                             </button>
@@ -69,12 +68,14 @@ const Landing: React.FC = () => {
                 </div>
 
                 {/* About Section */}
-                <div id="about" className="h-auto p-10 flex items-center gap-5 bg-gray-900">
-                    <div className="w-1/2 p-10">
-                        <h1 className="text-white text-4xl font-medium mb-5">About ResQ-AI</h1>
-                        <p className="text-gray-400">
-                            ResQ-AI is an AI-powered platform that predicts and prevents flood risks using real-time weather, satellite, and topography data.
-                        </p>
+                <div id="about" className="h-auto p-1 md:p-10 md:flex items-center gap-5 bg-gray-900 border border-white">
+                    <div className="md:w-1/2 p-10 ">
+                        <div className="text-center md:w-[65vh] ">
+                            <h1 className="text-white text-4xl font-medium mb-5">About ResQ-AI</h1>
+                            <p className="text-gray-400">
+                                ResQ-AI is an AI-powered platform that predicts and prevents flood risks using real-time weather, satellite, and topography data.
+                            </p>
+                        </div>
                         <div className="flex mt-10 gap-10">
                             <div>
                                 <h2 className="text-white text-2xl font-medium">Our Mission</h2>
@@ -86,7 +87,7 @@ const Landing: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-1/2 p-10">
+                    <div className="md:w-1/2 p-1 md:p-10">
                         <div className="h-full flex flex-wrap rounded-xl border-2 border-[#027fa5]">
                             <img src="../../Public/about.png" alt="ResQ-AI" className="h-full w-full rounded-xl" />
                         </div>
@@ -94,8 +95,8 @@ const Landing: React.FC = () => {
                 </div>
 
                 {/* Workflow Section */}
-                <div className="h-[50vh] p-10 flex flex-col justify-center items-center gap-5 bg-gray-900">
-                    <h1 className="text-white text-4xl font-medium text-center mb-3">
+                <div className="h-[50vh] p-10 flex flex-col justify-center items-center gap-5 bg-gray-900 border-4 border-red-800">
+                    <h1 className="text-white md:text-4xl font-medium text-center mb-3">
                         ResQ-AI Workflow: From Data to Action
                     </h1>
                     <p className="text-gray-400 text-lg text-center mb-5">
@@ -137,6 +138,6 @@ const Landing: React.FC = () => {
             </footer>
         </div>
     );
-};
+}
 
 export default Landing;

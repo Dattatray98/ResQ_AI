@@ -6,8 +6,7 @@ interface NavbarInter{
 
 
 export const NavbarTypes :NavbarInter[] = [
-    {id: 1, label:'Home', path:"/dashboard"},
-    {id: 2, label:"About"},
-    {id: 3, label:"Service"},
-    {id: 4, label:"Contact"}
+    {id: 1, label:'Home',},
+    {id: 2, label:"About", path:""},
+    {id: 4, label:"Contact", path:"footer"}
 ]

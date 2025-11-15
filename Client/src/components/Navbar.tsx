@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`w-full h-18 flex justify-between items-center px-[5vh] ${dashnav ? "bg-transparent absolute z-10 border-b border-gray-400" : "absolute z-10 top-5 bg-transparent "}`}>
+        <nav className={`w-full h-18 md:flex justify-between items-center px-[5vh] hidden ${dashnav ? "bg-transparent absolute z-10 border-b border-gray-400" : "absolute z-10 top-5 bg-transparent "}`}>
             <div className="flex items-center justify-between w-[45%] ">
                 <div>
                     <h1 className=" flex text-3xl font-medium text-black mb-2 ">Res<p className="text-red-700">Q</p>-AI</h1>

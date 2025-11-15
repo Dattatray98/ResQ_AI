@@ -20,7 +20,7 @@ const Dashboard = () => {
     const [time, setTime] = useState(new Date() || "");
     const pred = useAlret();
     const { OpenSafety, handleSafety, closeSafety } = useSafetyPopup();
-
+    
 
     useEffect(() => {
         const handleGetLocation = () => {
@@ -76,7 +76,6 @@ const Dashboard = () => {
 
     const handleTesting = () => {
         pred.fetchpred();
-
     }
 
     const scrollSelection = ()=>{
