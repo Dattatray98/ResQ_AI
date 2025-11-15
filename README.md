@@ -15,21 +15,24 @@
    ```bash
    git clone https://github.com/Dattatray98/ResQ_AI.git
 
-2. Install Dependencies:
-### FrontEnd Dependencies:
-  ```bash
-  cd Client
+2. Installation and Setup
+### FrontEnd Setup
+ 1. Go to client folder
+```bash
+cd Client
 
-  ```bash
-  npm install
+ 2. 1. Install dependencies:
+```bash
+npm install
 
 - Start Frontend:
-   ```bash
-   npm run dev
+```bash
+npm run dev
 
-### BackEnd Dependencies:
-  ```bash
-  cd Server
+b) BackEnd Setup:
+ 1. Go to the backend folder:
+```bash
+cd Server
 
   ```bash
   npm install
