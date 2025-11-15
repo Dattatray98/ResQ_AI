@@ -5,7 +5,7 @@ import { GetHigherGround } from "../Controllers/higher-ground.controller";
 const router = Router();
 
 
-router.get("/address", GetLocation);
+router.get("/user-address", GetLocation);
 router.get("/location/higher-ground", GetHigherGround)
 
 export default router;

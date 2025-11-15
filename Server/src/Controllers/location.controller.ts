@@ -17,11 +17,12 @@ export const GetLocation = async (req: Request, res: Response) => {
         });
 
         const address = response.data.results[0]?.formatted_address;
+        const shorterAddress = address.slice(10,)
 
         res.status(200).json({
             latitude: lat,
             longitude: lng,
-            address,
+            shorterAddress,
         })
     } catch (err) {
         res.status(500).json({ error: "Failed to reverse geocode" });

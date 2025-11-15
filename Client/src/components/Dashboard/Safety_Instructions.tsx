@@ -2,6 +2,7 @@
 import { ImCross } from "react-icons/im";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getLocation } from "../../hooks/useLocation";
 
 
 interface datatype {
@@ -21,36 +22,31 @@ const data: datatype[] = [
     {
         id: 2,
         heading: "Turn off main utilities",
-        parag: "Move to safe location away from the flood Zone immediately."
+        parag: "Switch off your electricity, gas, and water supplies if it's safe."
     },
     {
         id: 3,
         heading: "Avoid floodwater",
-        parag: "Move to safe location away from the flood Zone immediately."
+        parag: "Do not walk, swim, or drive through flooded areas."
     },
     {
         id: 4,
         heading: "Have an emergency kit",
-        parag: "Move to safe location away from the flood Zone immediately."
+        parag: "Keep your supplies accessible and ready to go at a moment's notice."
     }
 ]
 
 
 
-const Safety_Instructions: React.FC<any> = ({ onClose, directions }) => {
+const Safety_Instructions: React.FC<any> = ({ onClose, directions, scrollToMap }) => {
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [higherGround, setHigherGround] = useState<any | null>(null);
 
-
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setCoords({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                });
-            }
-        )
+        const handleCoords = () => {
+            getLocation(setCoords);
+        }
+        handleCoords();
     }, [])
 
 
@@ -91,14 +87,14 @@ const Safety_Instructions: React.FC<any> = ({ onClose, directions }) => {
                         {higherGround?.loction?.length > 0 ? (
                             higherGround.loction.map((point: any, index: number) => (
                                 <div key={index}
-                                    onClick={() => directions({ lat2: point.lat, lng2: point.lng })}
+                                    onClick={() => { directions({ lat2: point.lat, lng2: point.lng }); scrollToMap() }}
+
                                     className="flex flex-col justify-between border border-gray-200 shadow-sm px-4 py-2 rounded-xl hover:scale-[1.01] transition-all duration-300 hover:bg-green-50 cursor-pointer">
                                     <h1 className="text-sm font-medium text-gray-700">{point.address}</h1>
                                     <div className="flex gap-5 pt-2">
                                         <p className="text-sm text-gray-600">Distance : {point.distanceInMeters} m</p>
                                         <p className="text-sm text-gray-600">Elevation : {point.elevation.toFixed(2)} m</p>
                                     </div>
-
                                 </div>
                             ))) : (
                             <p>No higher ground found.</p>

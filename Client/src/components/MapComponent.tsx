@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useGoogleMaps } from '../hooks/useGoogleClient'
 
-const MapComponent: React.FC<any> = ({ lat, lng, lat2, lng2 }) => {
+const MapComponent: React.FC<any> = ({ lat, lng, lat2, lng2}) => {
     const googleMaps = useGoogleMaps(import.meta.env.VITE_GOOGLE_MAPS_KEY);
     const mapRef = useRef<HTMLDivElement | null>(null);
     const mapInstanceRef = useRef<any>(null);
@@ -53,10 +53,11 @@ const MapComponent: React.FC<any> = ({ lat, lng, lat2, lng2 }) => {
         );
     }, [lat2, lng2, googleMaps]);
 
+
     return (
         <div
             ref={mapRef}
-            className="rounded-2xl w-full h-[60vh] border-2 border-gray-300 shadow-md"
+            className="rounded-2xl w-full h-[80vh] border-2 border-gray-300 shadow-md"
         />
     );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import Navbar from "../components/Navbar"
-import { getLocation } from "../hooks/useMap";
+import { getLocation } from "../hooks/useLocation";
 import { getWeatherData } from "../hooks/useWeather";
 import WeatherForcast from "../components/Dashboard/WeatherForcast";
 import WeatherGrahp from "../components/WeatherGrahp";
@@ -80,6 +80,12 @@ const Dashboard = () => {
 
     }
 
+    const scrollSelection = ()=>{
+        const section = document.getElementById("map");
+        if(section){
+            section?.scrollIntoView({behavior: "smooth"});
+        }
+    }
 
     const handleDirections = ({ lat2, lng2 }: { lat2: number, lng2: number }) => {
         setDirect({ lat: lat2, lng: lng2 })
@@ -138,7 +144,7 @@ const Dashboard = () => {
                         <div className="p-3">
                             <h1 className="font-medium text-2xl text-black">Map</h1>
                         </div>
-                        <div>
+                        <div id="map">
                             {/* {coords ? <Map lat={coords.lat} lng={coords.lng} /> : "Loading..."} */}
                             {coords ? <MapComponent lat={coords.lat} lng={coords.lng} lat2={direct?.lat} lng2={direct?.lng} /> : "loading..."}
                         </div>
@@ -146,7 +152,7 @@ const Dashboard = () => {
                 </div>
 
                 <Alert_message prediction={pred.prediction} onOpenSafety={handleSafety} />
-                {OpenSafety && <Safety_Instructions lat={coords?.lat} lng={coords?.lng} onClose={closeSafety} directions={handleDirections} />}
+                {OpenSafety && <Safety_Instructions lat={coords?.lat} lng={coords?.lng} onClose={closeSafety} directions={handleDirections} scrollToMap={scrollSelection} />}
             </main>
             <footer>
                 <Footer />
