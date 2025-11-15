@@ -24,6 +24,6 @@ interface model_data {
 }
 
 export const ResQ_Model = async (data: model_data) => {
-    const respones = await axios.post("https://resq-ai-disaster-predictor.onrender.com/predict", data);
+    const respones = await axios.post(`${process.env.RESQ_ML_API}/predict`, data);
     return respones.data
 }

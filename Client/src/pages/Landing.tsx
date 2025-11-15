@@ -43,7 +43,7 @@ const Landing: React.FC = () => {
                 {/* Hero Section */}
                 <div
                     className="border md:h-screen relative bg-cover"
-                    style={{ backgroundImage: "url('/herosection7.jpg')" }}
+                    style={{ backgroundImage: "url('../../Public/herosection7.jpg')" }}
                 >
                     <div className="absolute z-10 left-[15vh] top-[30vh]">
                         <h1 className="text-9xl font-bold text-black mb-2">
@@ -88,7 +88,7 @@ const Landing: React.FC = () => {
                     </div>
                     <div className="w-1/2 p-10">
                         <div className="h-full flex flex-wrap rounded-xl border-2 border-[#027fa5]">
-                            <img src="/about.png" alt="ResQ-AI" className="h-full w-full rounded-xl" />
+                            <img src="../../Public/about.png" alt="ResQ-AI" className="h-full w-full rounded-xl" />
                         </div>
                     </div>
                 </div>
