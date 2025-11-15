@@ -1,4 +1,5 @@
-import { FaGraduationCap } from "react-icons/fa";
+import { LuBrainCircuit } from "react-icons/lu";
+
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ const Footer = () => {
                         <div className="flex items-center mb-4">
                             {/* Replace with your logo */}
                             <div className='flex gap-1'>
-                                <FaGraduationCap className="text-orange-400 text-3xl" />
+                                <LuBrainCircuit className="h-7 w-7 mt-1" />
                                 <h1 className=" flex text-3xl font-medium text-white mb-2 ">Res<p className="text-red-600">Q</p>-AI</h1>
                             </div>
                         </div>
@@ -50,8 +51,6 @@ const Footer = () => {
                                 { name: 'Home', path: '/' },
                                 { name: 'About', path: '/about' },
                                 { name: 'Services', path: '/services' },
-                                { name: 'Terms & Conditions', path: '/TermsAndConditions' },
-                                { name: 'Privacy Policy', path: '/PrivacyPolicy' }
                             ].map((link) => (
                                 <li key={link.name}>
                                     <a
