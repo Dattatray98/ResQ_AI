@@ -1,1 +1,1 @@
-ResQ AI - A AI-powered flood prediction & disaster response system.
+#ResQ AI - A AI-powered flood prediction & disaster response system.
